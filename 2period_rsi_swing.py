@@ -18,9 +18,9 @@ tesla_ticker = 'TSLA'
 
 
 def two_period_rsi (ticker) : 
-    url_EMA = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'EMA', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': '2VNO5H70PQ6GSC98', 'series_type': 'close'})
-    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
-    url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'daily', 'function': 'RSI', 'time_period':'2', 'series_type':'close', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
+    url_EMA = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'EMA', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': your_api_key, 'series_type': 'close'})
+    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': your_api_key})   
+    url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'daily', 'function': 'RSI', 'time_period':'2', 'series_type':'close', 'symbol': ticker, 'apikey': your_api_key})   
 
     pre_json_EMA = urllib.request.urlopen(url_EMA, context = ctx).read().decode()
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
