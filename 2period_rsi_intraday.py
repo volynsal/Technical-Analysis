@@ -18,15 +18,15 @@ aapl_ticker = 'TSLA'
 
 
 def two_period_rsi (ticker) : 
-    url_EMA = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'EMA', 'symbol': aapl_ticker, 'interval':'1min', 'apikey': your_api_key, 'series_type': 'close'})
+    url_SMA = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'SMA', 'symbol': aapl_ticker, 'interval':'1min', 'apikey': your_api_key, 'series_type': 'close'})
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': '1min', 'outputsize': 'full', 'function':'TIME_SERIES_INTRADAY', 'symbol': ticker, 'apikey': your_api_key})   
     url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'1min', 'function': 'RSI', 'time_period':'2', 'series_type':'close', 'symbol': ticker, 'apikey': your_api_key})   
 
-    pre_json_EMA = urllib.request.urlopen(url_EMA, context = ctx).read().decode()
+    pre_json_SMA = urllib.request.urlopen(url_SMA, context = ctx).read().decode()
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     pre_json_rsi = urllib.request.urlopen(url_rsi, context = ctx).read().decode()
 
-    loaded_json_EMA = json.loads(pre_json_EMA)['Technical Analysis: EMA']
+    loaded_json_SMA = json.loads(pre_json_SMA)['Technical Analysis: SMA']
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (1min)']
     loaded_json_rsi = json.loads(pre_json_rsi)['Technical Analysis: RSI']
 
@@ -34,12 +34,12 @@ def two_period_rsi (ticker) :
     last_minute = list(loaded_json_prices.keys()).pop(0)
 
     floated_price = float(loaded_json_prices[last_minute]['4. close'])
-    if (last_minute[:-3] in loaded_json_EMA) : floated_EMA = float(loaded_json_EMA[last_minute[:-3]]['EMA'])
+    if (last_minute[:-3] in loaded_json_SMA) : floated_SMA = float(loaded_json_SMA[last_minute[:-3]]['SMA'])
     if (last_minute[:-3] in loaded_json_rsi) : floated_rsi = float(loaded_json_rsi[last_minute[:-3]]['RSI'])
 
-    if (floated_EMA and floated_rsi and floated_price >= floated_EMA and floated_rsi >= 95) : 
+    if (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi >= 95) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' overbought')
-    elif (floated_EMA and floated_rsi and floated_price >= floated_EMA and floated_rsi <= 5) : 
+    elif (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi <= 5) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' oversold')
     else : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
