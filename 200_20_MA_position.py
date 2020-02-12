@@ -17,8 +17,8 @@ tesla_ticker = 'TSLA'
 
 
 def twohundred_twenty_ma (ticker) : 
-    url_EMA_20_day = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '20', 'function':'EMA', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': your_api_key, 'series_type': 'close'})
-    url_EMA_200_day = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'EMA', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': your_api_key, 'series_type': 'close'})
+    url_EMA_20_day = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '20', 'function':'EMA', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': '2VNO5H70PQ6GSC98', 'series_type': 'close'})
+    url_EMA_200_day = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'EMA', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': '2VNO5H70PQ6GSC98', 'series_type': 'close'})
 
     pre_json_EMA_20_day = urllib.request.urlopen(url_EMA_20_day, context = ctx).read().decode()
     pre_json_EMA_200_day = urllib.request.urlopen(url_EMA_200_day, context = ctx).read().decode()

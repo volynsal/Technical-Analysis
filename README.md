@@ -1,4 +1,4 @@
-Codified 5 of 6 trading strategies listed here: https://www.johndeoresearch.com/mean-reversion-trading-strategies/. 
+Codified the Opening Range Breakout strategy (15-minute timeframe), as well as 5 of 6 trading strategies listed here: https://www.johndeoresearch.com/mean-reversion-trading-strategies/.
 
 This includes: 
 1) 90/30 MOVING AVERAGE 
@@ -6,5 +6,6 @@ This includes:
 3) MA 200/MA 20 
 4) PRICE CHANGE
 6) LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR)
+
 
 For any questions or concerns, please contact volynsal@gmail.com.

@@ -18,8 +18,8 @@ tesla_ticker = 'TSLA'
 
 
 def atr_deviation (ticker) : 
-    url_atr = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '14', 'function':'ATR', 'symbol': tesla_ticker, 'interval':'1min', 'apikey': your_api_key})
-    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': '1min', 'outputsize': 'compact', 'function':'TIME_SERIES_INTRADAY', 'symbol': ticker, 'apikey': your_api_key})   
+    url_atr = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '14', 'function':'ATR', 'symbol': tesla_ticker, 'interval':'1min', 'apikey': '2VNO5H70PQ6GSC98'})
+    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': '1min', 'outputsize': 'compact', 'function':'TIME_SERIES_INTRADAY', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
 
     pre_json_atr = urllib.request.urlopen(url_atr, context = ctx).read().decode()
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
