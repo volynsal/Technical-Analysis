@@ -4,6 +4,8 @@ import json
 from datetime import datetime
 from pytz import timezone
 
+from threading import Timer
+
 tz = timezone('EST')
 
 # import pprint
@@ -14,7 +16,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-aapl_ticker = 'SNAP'
+aapl_ticker = 'AAPL'
 
 
 def two_period_rsi (ticker) : 
@@ -38,9 +40,9 @@ def two_period_rsi (ticker) :
     if (last_minute[:-3] in loaded_json_rsi) : floated_rsi = float(loaded_json_rsi[last_minute[:-3]]['RSI'])
 
     if (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi <= 5) : 
-        return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' overbought')
-    elif (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi >= 95) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' oversold')
+    elif (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi >= 95) : 
+        return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' overbought')
     else : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
