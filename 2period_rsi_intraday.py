@@ -16,7 +16,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-aapl_ticker = 'AAPL'
+aapl_ticker = 'MSFT'
 
 
 def two_period_rsi (ticker) : 
@@ -41,7 +41,7 @@ def two_period_rsi (ticker) :
 
     if (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi <= 5) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' oversold')
-    elif (floated_SMA and floated_rsi and floated_price >= floated_SMA and floated_rsi >= 95) : 
+    elif (floated_SMA and floated_rsi and floated_price <= floated_SMA and floated_rsi >= 95) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' overbought')
     else : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 

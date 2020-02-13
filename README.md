@@ -8,4 +8,4 @@ This includes:
 6) LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR)
 
 
-For any questions or concerns, please contact volynsal@gmail.com.
+My API Key is provided if you are interesting in cloning the repository and trying out some test calls. For any questions or concerns, please contact volynsal@gmail.com.
