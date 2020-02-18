@@ -4,8 +4,6 @@ import json
 from datetime import datetime
 from pytz import timezone
 
-from threading import Timer
-
 tz = timezone('EST')
 
 # import pprint
@@ -16,7 +14,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-aapl_ticker = 'MSFT'
+aapl_ticker = 'AAPL'
 
 
 def two_period_rsi (ticker) : 
