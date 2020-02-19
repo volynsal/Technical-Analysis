@@ -7,4 +7,5 @@ This includes:
 MA 200/MA 20
 PRICE CHANGE
 LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR)
+
 My API Key is provided if you are interesting in cloning the repository and trying out some test calls, but please keep in mind the API is capped at 5 calls per minute. For any questions or concerns, please contact volynsal@gmail.com.
