@@ -45,5 +45,3 @@ def two_period_rsi (ticker) :
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
 print(two_period_rsi(aapl_ticker))
-
-

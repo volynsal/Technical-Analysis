@@ -3,6 +3,7 @@ import ssl
 import json
 from datetime import datetime
 from pytz import timezone
+import talib
 
 tz = timezone('EST')
 
@@ -12,11 +13,11 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-# THe ConnorsRSI combines three composite components: price momentum, duration of up/down trend
+# THe ConnorsRSI combines three composite components: price momentum, duration of up/down trend, and the relative magnitude of the price change
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-tesla_ticker = 'DIS'
+tesla_ticker = 'TSLA'
 
 def price_change (ticker):
     url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'daily', 'function': 'RSI', 'time_period':'3', 'series_type':'close', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
@@ -107,7 +108,7 @@ def relative_magnitude_price_change (ticker):
 
 def two_period_rsi (ticker) : 
     official_rsi = (price_change(tesla_ticker) + duration_of_trend(tesla_ticker) + relative_magnitude_price_change(tesla_ticker)) / 3
-    return official_rsi
+    return ticker + ' ' + str(official_rsi)
 
     # if (official_rsi >= 90) : 
     #     return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' overbought')
