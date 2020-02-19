@@ -1,4 +1,4 @@
-Codified the Opening Range Breakout strategy (15-minute timeframe), as well as 5 of 6 trading strategies listed here: https://www.johndeoresearch.com/mean-reversion-trading-strategies/.
+Codified 5 of 6 trading strategies listed here: https://www.johndeoresearch.com/mean-reversion-trading-strategies/.
 
 This includes:
 

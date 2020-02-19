@@ -17,7 +17,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-tesla_ticker = 'TSLA'
+tesla_ticker = 'AAPL'
 
 def price_change (ticker):
     url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'daily', 'function': 'RSI', 'time_period':'3', 'series_type':'close', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
@@ -93,8 +93,7 @@ def relative_magnitude_price_change (ticker):
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
     
-    for price in loaded_json_prices : 
-        prices.append(float(price['4. close']))
+    prices = [float(price['4. close']) for price in loaded_json_prices]
 
     percent_rank = 0
     previous_day_price = prices.pop(0)
@@ -117,4 +116,4 @@ def two_period_rsi (ticker) :
     # else : 
     #     return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
-print(two_period_rsi(tesla_ticker))
+print(two_period_rsi('AAPL'))
