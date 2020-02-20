@@ -3,6 +3,7 @@ import ssl
 import json
 from datetime import datetime
 from pytz import timezone
+import time
 
 from OC2period_rsi import two_period_rsi
 
@@ -14,13 +15,13 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-# robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
+robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
 tesla_ticker = 'AMZN'
 
 
 def pullback_strategy_scan (ticker) : 
-    url_ADX = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '10', 'function':'ADX', 'symbol': tesla_ticker, 'interval':'daily', 'apikey': 'IXV1N1AE5OTCW4KR', 'series_type': 'close'})
+    url_ADX = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '10', 'function':'ADX', 'symbol': ticker, 'interval':'daily', 'apikey': 'IXV1N1AE5OTCW4KR', 'series_type': 'close'})
     pre_json_ADX = urllib.request.urlopen(url_ADX, context = ctx).read().decode()
     loaded_json_ADX = json.loads(pre_json_ADX)['Technical Analysis: ADX']
 
@@ -29,7 +30,7 @@ def pullback_strategy_scan (ticker) :
     latest_ADX = float(loaded_json_ADX[latest_date]['ADX'])
 
     # Confirmation stock's lowest price is at least W% below the previous day's close
-    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'outputsize': 'full', 'interval': '1min', 'function':'TIME_SERIES_INTRADAY', 'symbol': tesla_ticker, 'apikey': '2VNO5H70PQ6GSC98'})
+    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'outputsize': 'full', 'interval': '1min', 'function':'TIME_SERIES_INTRADAY', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = list(json.loads(pre_json_prices)['Time Series (1min)'].values())[:390]
 
@@ -38,7 +39,7 @@ def pullback_strategy_scan (ticker) :
     lowest_price = min(prices)
     
     # close_day_before
-    url_prices_daily = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'outputsize': 'full', 'function':'TIME_SERIES_DAILY', 'symbol': tesla_ticker, 'apikey': '2VNO5H70PQ6GSC98'})
+    url_prices_daily = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'outputsize': 'full', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})
     pre_json_prices_daily = urllib.request.urlopen(url_prices_daily, context = ctx).read().decode()
     loaded_json_prices_daily = json.loads(pre_json_prices_daily)['Time Series (Daily)']
 
@@ -60,7 +61,7 @@ def pullback_strategy_scan (ticker) :
     # pp.pprint(loaded_json_prices_daily)
 
     # ConnorsRSI 
-    official_rsi = two_period_rsi(tesla_ticker)
+    official_rsi = two_period_rsi(ticker)
 
     if (latest_ADX > 30 and official_rsi <= 15 and second_to_last_day_price * 0.96 >= lowest_price and percent_rank <= 25) : 
         return 'BUY'
@@ -75,5 +76,8 @@ def pullback_strategy_scan (ticker) :
     # else : 
     #     return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
-print(pullback_strategy_scan(tesla_ticker))
+# print(pullback_strategy_scan(tesla_ticker))
 
+for ticker in robinhood_100_most_popular : 
+    print(pullback_strategy_scan(ticker))
+    time.sleep(60)

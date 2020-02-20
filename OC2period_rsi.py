@@ -17,7 +17,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-tesla_ticker = 'AAPL'
+ticker = 'AAPL'
 
 def price_change (ticker):
     url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'daily', 'function': 'RSI', 'time_period':'3', 'series_type':'close', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
@@ -27,15 +27,12 @@ def price_change (ticker):
     return float(list(loaded_json_rsi).pop(0)['RSI'])
 
 #Applying the RSI formula to the duration_of_trend as opposed to close values
-def duration_of_trend (ticker):
-    prices = []
-    
+def duration_of_trend (ticker):    
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': 'IXV1N1AE5OTCW4KR'})   
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
 
-    for price in loaded_json_prices : 
-        prices.append(float(price['4. close']))
+    prices = [float(price['4. close']) for price in loaded_json_prices]
 
     streak = 0
     streaks = []
@@ -78,17 +75,11 @@ def duration_of_trend (ticker):
     average_upwards_movement.reverse()
     average_downwards_movement.reverse()
 
-    relative_strength_indices = []
+    relative_strength_index = 100 - 100/(average_upwards_movement[0] / average_downwards_movement[0] + 1)
 
-    for index in reversed(range(0, len(average_upwards_movement))) :
-        relative_strength_indices.append(100 - 100/(average_upwards_movement[index] / average_downwards_movement[index] + 1))
-    
-    relative_strength_indices.reverse()
-    return relative_strength_indices.pop(1)
+    return relative_strength_index
 
-def relative_magnitude_price_change (ticker):
-    prices = []
-    
+def relative_magnitude_price_change (ticker):    
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': 'IXV1N1AE5OTCW4KR'})   
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
@@ -106,7 +97,7 @@ def relative_magnitude_price_change (ticker):
     return percent_rank / 98 * 100
 
 def two_period_rsi (ticker) : 
-    official_rsi = (price_change(tesla_ticker) + duration_of_trend(tesla_ticker) + relative_magnitude_price_change(tesla_ticker)) / 3
+    official_rsi = (price_change(ticker) + duration_of_trend(ticker) + relative_magnitude_price_change(ticker)) / 3
     return ticker + ' ' + str(official_rsi)
 
     # if (official_rsi >= 90) : 
@@ -116,4 +107,4 @@ def two_period_rsi (ticker) :
     # else : 
     #     return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
-print(two_period_rsi('AAPL'))
+print(two_period_rsi('NVDA'))
