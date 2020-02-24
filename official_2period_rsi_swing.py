@@ -18,7 +18,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # The ConnorsRSI combines three composite components: price momentum, duration of up/down trend, and the relative magnitude of the price change
 
-favorites = ('AAPL', 'MSFT', 'FB', 'NVDA', 'NFLX')
+favorites = ('BA', 'AAPL', 'MSFT', 'FB', 'NVDA', 'NFLX')
 
 
 def two_period_rsi (ticker, prices) : 
@@ -79,4 +79,5 @@ def relative_magnitude_price_change (ticker, prices):
 #     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
 
 #     prices = list(float(price['4. close']) for price in loaded_json_prices)
-#     print(two_period_rsi(ticker))
+#     print(two_period_rsi(ticker, prices))
+

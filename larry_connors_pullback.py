@@ -71,4 +71,3 @@ for ticker in favorites :
     print(pullback_strategy_scan(ticker))
     time.sleep(61)
 
-
