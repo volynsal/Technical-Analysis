@@ -79,5 +79,5 @@ def relative_magnitude_price_change (ticker, prices):
 #     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
 
 #     prices = list(float(price['4. close']) for price in loaded_json_prices)
-#     print(two_period_rsi(ticker, prices))
+#     print(ticker + ': ' + str(two_period_rsi(ticker, prices)))
 
