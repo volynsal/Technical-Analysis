@@ -13,8 +13,8 @@ In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculat
 Please make sure the following dependencies are installed before running any script(s): 
 
 ```
-brew install talib
-pip3 install talib
+brew install ta-lib
+pip3 install ta-lib
 pip3 install pytz
 pip3 install numpy
 ```
