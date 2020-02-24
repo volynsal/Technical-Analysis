@@ -10,4 +10,11 @@ This includes:
 
 In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculate the ConnorsRSI. He incorporates this indicator in an official options pullback strategy as well. Files **official_2period_rsi_swing.py** and **larry_connors_pullback.py** implement the indicator and pullback strategy.
 
+Please make sure the following depences are installed before running any script(s): 
+
+1. brew install talib
+2. pip3 install talib
+3. pip3 install pytz
+4. pip3 install numpy
+
 My API Key is provided if you are interesting in cloning the repository and trying out some test calls, but please keep in mind the API is capped at 5 calls per minute. For any questions or concerns, please contact volynsal@gmail.com.
