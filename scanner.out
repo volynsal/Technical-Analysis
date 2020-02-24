@@ -1198,3 +1198,4 @@ UnboundLocalError: local variable 'floated_SMA' referenced before assignment
 (2020-02-24 14:16:14.965772-05:00) MSFT stable
 (2020-02-24 14:17:10.278127-05:00) MSFT stable
 (2020-02-24 14:18:10.191410-05:00) MSFT stable
+(2020-02-24 14:19:06.760854-05:00) MSFT stable
