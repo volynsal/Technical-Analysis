@@ -2,13 +2,13 @@ Codified 5 of 6 trading strategies listed here: https://www.johndeoresearch.com/
 
 This includes:
 
-1. 90/30 MOVING AVERAGE
-2. (LARRY CONNOR'S) RSI 2 (SWING AND INTRADAY)
-3. MA 200/MA 20
-4. PRICE CHANGE
-6. LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR)
+1. 90/30 MOVING AVERAGE (**90_30_MA_position.py**)
+2. (LARRY CONNOR'S) RSI 2 (**2period_rsi_intraday.py** & **2period_rsi_swing.py**)
+3. MA 200/MA 20 (**200_20_MA_position.py**)
+4. PRICE CHANGE (**dramatic_price_change.py**)
+6. LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR) (**atr_deviation.py**)
 
-In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculate the ConnorsRSI. He incorporates this indicator in an official options pullback strategy as well. Files **official_2period_rsi_swing.py** and **larry_connors_pullback.py** implement the indicator and pullback strategy respectively.
+In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculate the ConnorsRSI. He incorporates this indicator in his own official options pullback strategy. Files **official_2period_rsi_swing.py** and **larry_connors_pullback.py** implement the indicator and pullback strategy respectively, using the rules from his book.
 
 Please make sure the following dependencies are installed before running any script(s): 
 
