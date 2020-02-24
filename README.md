@@ -19,4 +19,6 @@ pip3 install pytz
 pip3 install numpy
 ```
 
-My API Key is provided if you are interesting in cloning the repository and trying out some test calls, but please keep in mind the API is capped at 5 calls per minute. For any questions or concerns, please contact volynsal@gmail.com.
+My API Key is provided if you are interesting in cloning the repository and trying out some test calls, but please keep in mind the API is capped at 5 calls per minute. To get around this, I use the time library to pause execution while looping through a tuple of tickers. 
+
+For any questions or concerns, please contact volynsal@gmail.com.
