@@ -70,7 +70,7 @@ def relative_magnitude_price_change (ticker, prices):
 
     return percent_rank / 98 * 100
     
-# IExecution of script independently, without larry_connors_pullback.py
+# To execute the script independently, without larry_connors_pullback.py, please run the code below:
 
 # print('(' + str(datetime.now(tz))[:10] + ') ')
 # for ticker in favorites : 
