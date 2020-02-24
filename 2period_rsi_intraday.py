@@ -14,11 +14,11 @@ ctx.verify_mode = ssl.CERT_NONE
 
 # robinhood_100_most_popular = ('ACB', 'F', 'GE', 'GPRO', 'FIT' 'AAPL', 'DIS', 'SNAP', 'MSFT', 'TSLA', 'AMZN', 'FB', 'GOOGL', 'NVDA', 'INTC', 'BABA', 'UBER', 'BAC', 'T', 'SBUX')
 # vix = 'VIX'
-aapl_ticker = 'NVDA'
+ticker = 'MSFT'
 
 
 def two_period_rsi (ticker) : 
-    url_SMA = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'SMA', 'symbol': aapl_ticker, 'interval':'1min', 'apikey': '2VNO5H70PQ6GSC98', 'series_type': 'close'})
+    url_SMA = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'time_period': '200', 'function':'SMA', 'symbol': ticker, 'interval':'1min', 'apikey': '2VNO5H70PQ6GSC98', 'series_type': 'close'})
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': '1min', 'outputsize': 'full', 'function':'TIME_SERIES_INTRADAY', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
     url_rsi = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval':'1min', 'function': 'RSI', 'time_period':'2', 'series_type':'close', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
 
@@ -44,4 +44,4 @@ def two_period_rsi (ticker) :
     else : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
-print(two_period_rsi(aapl_ticker))
+print(two_period_rsi(ticker))
