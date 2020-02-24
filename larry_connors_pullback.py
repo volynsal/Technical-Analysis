@@ -6,19 +6,17 @@ from pytz import timezone
 import time
 import numpy as np
 from talib import ADX
+# import pprint
 
 from official_2period_rsi_swing import two_period_rsi
 
 tz = timezone('EST')
-
-import pprint
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 favorites = ('AAPL', 'MSFT', 'FB', 'NVDA', 'NFLX', 'TGT', 'COST', 'JD', 'VZ', 'PFE', 'GOOGL', 'PYPL', 'BA', 'CSCO', 'MU', 'NKE', 'SQ', 'DIS')
-# vix = 'VIX'
 
 def pullback_strategy_scan (ticker) : 
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': 'YSPOO5FANVL57LQ2'})   
@@ -56,10 +54,8 @@ def pullback_strategy_scan (ticker) :
         if (latest_price > prices[index]) : percent_rank += 1
 
     percent_rank = percent_rank / 389 * 100
-
-    # pp = pprint.PrettyPrinter(indent=4)
-    # pp.pprint(loaded_json_prices_daily)
     
+    # 4. ConnorsRSI calculation
     official_rsi = two_period_rsi(ticker, prices)
 
     if (latest_ADX.pop(0) > 30 and official_rsi <= 15 and second_to_last_day_price * 0.96 >= lowest_price and percent_rank <= 25) : 
