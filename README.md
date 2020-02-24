@@ -13,7 +13,7 @@ In his book *Introduction to ConnorsRSI*, Larry Connors uses slightly different 
 Please make sure the following dependencies are installed before running any script(s): 
 
 ```
-brew install talib
+brew install ta-lib
 pip3 install -r requirements.txt --no-index --find-links file:///tmp/packages
 ```
 
