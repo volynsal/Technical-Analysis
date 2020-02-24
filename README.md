@@ -8,7 +8,7 @@ This includes:
 4. PRICE CHANGE
 6. LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR)
 
-In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculate the ConnorsRSI. He incorporates this indicator in an official options pullback strategy as well. Files **official_2period_rsi_swing.py** and **larry_connors_pullback.py** implement the indicator and pullback strategy.
+In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculate the ConnorsRSI. He incorporates this indicator in an official options pullback strategy as well. Files **official_2period_rsi_swing.py** and **larry_connors_pullback.py** implement the indicator and pullback strategy respectively.
 
 Please make sure the following depences are installed before running any script(s): 
 
