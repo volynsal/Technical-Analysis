@@ -13,10 +13,8 @@ In his book *Introduction to ConnorsRSI*, Larry Connors explains how to calculat
 Please make sure the following dependencies are installed before running any script(s): 
 
 ```
-brew install ta-lib
-pip3 install ta-lib
-pip3 install pytz
-pip3 install numpy
+brew install talib
+pip3 install -r requirements.txt --no-index --find-links file:///tmp/packages
 ```
 
 My API Key is provided if you are interesting in cloning the repository and trying out some test calls, but please keep in mind the API is capped at 5 calls per minute. To get around this, I use the time library to pause execution while looping through a tuple of tickers. 
