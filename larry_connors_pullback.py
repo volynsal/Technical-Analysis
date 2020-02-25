@@ -28,7 +28,6 @@ def pullback_strategy_scan (ticker) :
     # 1. Calculate ADX
     prices_close = list(reversed(prices))
     prices_high = list(reversed(list(float(price['2. high']) for price in loaded_json_prices)))
-    prices_open = list(reversed(list(float(price['1. open']) for price in loaded_json_prices)))
     prices_low = list(reversed(list(float(price['3. low']) for price in loaded_json_prices)))
     
     latest_ADX = ADX(np.asarray(prices_high), np.asarray(prices_low), np.asarray(prices_close), timeperiod=10).tolist()
