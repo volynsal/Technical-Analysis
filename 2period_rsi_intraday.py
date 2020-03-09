@@ -21,28 +21,30 @@ def two_period_rsi (ticker) :
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (1min)'].values()
     
-    last_minute = list(json.loads(pre_json_prices)['Time Series (1min)'].keys()).pop(0)
-
     prices = list(float(price['4. close']) for price in loaded_json_prices)
     floated_price = prices[0]
     prices.reverse()
 
-    floated_SMAs = SMA(np.asarray(prices), timeperiod=200).tolist()
-    floated_SMAs.reverse()
-    floated_SMA = floated_SMAs.pop(0)
+    floated_SMAs_200 = SMA(np.asarray(prices), timeperiod=200).tolist()
+    floated_SMAs_200.reverse()
+    floated_SMA_200 = floated_SMAs_200.pop(0)
+
+    floated_SMAs_5 = SMA(np.asarray(prices), timeperiod=5).tolist()
+    floated_SMAs_5.reverse()
+    floated_SMA_5 = floated_SMAs_5.pop(0)
 
     floated_RSIs = RSI(np.asarray(prices), timeperiod=2).tolist()
     floated_RSIs.reverse()
     floated_RSI = floated_RSIs.pop(0)
     
-    if (floated_price >= floated_SMA and floated_RSI <= 5) : 
+    if (floated_price > floated_SMA_200 and floated_price < floated_SMA_5 and floated_RSI <= 5) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' oversold')
-    elif (floated_price <= floated_SMA and floated_RSI >= 95) : 
+    elif (floated_price < floated_SMA_200 and floated_price > floated_SMA_5 and floated_RSI >= 95) : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' overbought')
     else : 
         return ('(' + str(datetime.now(tz)) + ') ' + ticker + ' stable') 
 
-for ticker in favorites : 
-    print(two_period_rsi(ticker))
+# for ticker in favorites : 
+#     print(two_period_rsi(ticker))
 
 
