@@ -14,7 +14,7 @@ Please make sure the following dependencies are installed before running any scr
 
 ```
 brew install ta-lib
-pip3 install -r requirements.txt --no-index --find-links file:///tmp/packages
+pip3 install -r requirements.txt
 ```
 
 My API Key is provided if you are interesting in cloning the repository and trying out some test calls, but please keep in mind the API is capped at 5 calls per minute. To get around this, I use the time library to pause execution while looping through tickers.
