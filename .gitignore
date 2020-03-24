@@ -3,3 +3,4 @@ big_three_trading.py
 scanner.out
 official_scanner.out
 pullback_scanner.out
+divergence_scanner.py
