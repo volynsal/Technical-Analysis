@@ -16,9 +16,9 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-favorites = ('CRM', 'MSFT', 'AAPL', 'FB', 'NVDA', 'NFLX', 'TGT', 'COST', 'JD', 'VZ', 'PFE', 'GOOGL', 'PYPL', 'BA', 'CSCO', 'MU', 'NKE', 'SQ', 'DIS')
+favorites = ('SPY', 'CRM', 'MSFT', 'AAPL', 'FB', 'NVDA', 'NFLX', 'TGT', 'COST', 'JD', 'VZ', 'PFE', 'GOOGL', 'PYPL', 'BA', 'CSCO', 'MU', 'NKE', 'SQ', 'DIS')
 
-def pullback_strategy_scan (ticker="AAPL") : 
+def pullback_strategy_scan (ticker="WMT") : 
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': 'YSPOO5FANVL57LQ2'})   
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
@@ -65,4 +65,6 @@ def pullback_strategy_scan (ticker="AAPL") :
 for ticker in favorites : 
         print(pullback_strategy_scan(ticker))
         time.sleep(61) 
+
+# print(pullback_strategy_scan())
 

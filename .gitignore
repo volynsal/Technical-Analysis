@@ -4,3 +4,4 @@ scanner.out
 official_scanner.out
 pullback_scanner.out
 divergence_scanner.py
+vix_spy_correlation.py

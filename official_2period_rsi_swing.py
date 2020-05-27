@@ -19,7 +19,7 @@ ctx.verify_mode = ssl.CERT_NONE
 # The ConnorsRSI combines three composite components: price momentum, duration of up/down trend, 
 # and the relative magnitude of the price change
 
-favorites = ('KR', 'CRM', 'FB', 'NVDA', 'NFLX')
+favorites = ('KR', 'AAPL', 'BA', 'FB', 'SPY')
 
 
 def two_period_rsi (ticker, prices) : 
@@ -74,7 +74,7 @@ def relative_magnitude_price_change (ticker, prices):
 # To execute the script independently, without larry_connors_pullback.py, please run the code below:
 
 # print('(' + str(datetime.now(tz))[:10] + ') ')
-# for ticker in favorites[0:1] : 
+# for ticker in favorites : 
 #     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': 'daily', 'outputsize': 'compact', 'function':'TIME_SERIES_DAILY', 'symbol': ticker, 'apikey': 'N69PE58L8L68YV07'})   
 #     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
 #     loaded_json_prices = json.loads(pre_json_prices)['Time Series (Daily)'].values()
