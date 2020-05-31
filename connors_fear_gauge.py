@@ -24,8 +24,7 @@ def fear_gauge (ticker="VIX") :
     prices.reverse()
 
     floated_SMAs_10 = SMA(np.asarray(prices), timeperiod=10).tolist()
-    floated_SMAs_10.reverse()
-    floated_SMA_10 = floated_SMAs_10.pop(0)
+    floated_SMA_10 = floated_SMAs_10.pop()
     
     if (floated_price <= floated_SMA_10 * 0.95) : 
         return ('Be careful buying / lock in gains')

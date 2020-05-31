@@ -16,7 +16,7 @@ ctx.verify_mode = ssl.CERT_NONE
 
 favorites = ('AAPL', 'MSFT', 'FB', 'NVDA', 'NFLX')
 
-def two_period_rsi (ticker="SPY") : 
+def rsi_divergence_scanner(ticker="SPY") : 
     url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': '1min', 'outputsize': 'full', 'function':'TIME_SERIES_INTRADAY', 'symbol': ticker, 'apikey': '2VNO5H70PQ6GSC98'})   
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (1min)'].values()
