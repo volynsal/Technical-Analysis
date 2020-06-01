@@ -23,18 +23,14 @@ def two_period_rsi (ticker) :
     
     prices = list(float(price['4. close']) for price in loaded_json_prices)
     floated_price = prices[0]
-    prices.reverse()
 
-    floated_SMAs_200 = SMA(np.asarray(prices), timeperiod=200).tolist()
-    floated_SMAs_200.reverse()
+    floated_SMAs_200 = SMA(np.asarray(prices)[::-1], timeperiod=200).tolist()[::-1]
     floated_SMA_200 = floated_SMAs_200.pop(0)
 
-    floated_SMAs_5 = SMA(np.asarray(prices), timeperiod=5).tolist()
-    floated_SMAs_5.reverse()
+    floated_SMAs_5 = SMA(np.asarray(prices)[::-1], timeperiod=5).tolist()[::-1]
     floated_SMA_5 = floated_SMAs_5.pop(0)
 
-    floated_RSIs = RSI(np.asarray(prices), timeperiod=2).tolist()
-    floated_RSIs.reverse()
+    floated_RSIs = RSI(np.asarray(prices)[::-1], timeperiod=2).tolist()[::-1]
     floated_RSI = floated_RSIs.pop(0)
     
     if (floated_price > floated_SMA_200 and floated_price < floated_SMA_5 and floated_RSI <= 5) : 
