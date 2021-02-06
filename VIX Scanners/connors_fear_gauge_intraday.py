@@ -6,6 +6,8 @@ from pytz import timezone
 from talib import SMA, RSI
 import numpy as np
 
+import quandl
+
 tz = timezone('EST')
 
 # import pprint
@@ -15,7 +17,10 @@ ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
 def fear_gauge () :
-    url_prices = 'https://www.alphavantage.co/query?' + urllib.parse.urlencode({'interval': '1min', 'outputsize': 'full', 'function':'TIME_SERIES_INTRADAY', 'symbol': 'VIX', 'apikey': 'YSPOO5FANVL57LQ2'})   
+    url_prices = vix = quandl.get("CBOE/VIX")
+    
+    print(url_prices)
+    
     pre_json_prices = urllib.request.urlopen(url_prices, context = ctx).read().decode()
     loaded_json_prices = json.loads(pre_json_prices)['Time Series (1min)'].values()
     

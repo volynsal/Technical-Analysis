@@ -1,9 +1,13 @@
 scanner.out
 official_scanner.out
 pullback_scanner.out
+connors_fear_gauge_intraday.py
+connors_fear_gauge.py
 
 vix_spy_correlation.py
 dramatic_price_change.py
 atr_deviation.py
 2period_rsi_intraday.py
 2period_rsi.py
+
+13_MM.py
