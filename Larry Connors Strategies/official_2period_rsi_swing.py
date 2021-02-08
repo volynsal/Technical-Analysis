@@ -1,20 +1,10 @@
-import urllib, urllib.parse, urllib.error, urllib.request
-import ssl
 import json
 from datetime import datetime
 from pytz import timezone
 from talib import RSI
 import numpy as np
 
-# import pandas, pandas_datareader.data as web
-# import time
-# import pprint
-
 tz = timezone('EST')
-
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
 
 # The ConnorsRSI combines three composite components: price momentum, duration of up/down trend, 
 # and the relative magnitude of the price change
