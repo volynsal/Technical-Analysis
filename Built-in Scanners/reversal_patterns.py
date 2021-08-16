@@ -11,11 +11,10 @@ market_indices = ('SPY', 'QQQ', 'DIA')
 tech_favorites = ('PLTR', 'ROKU', 'ADSK', 'SPOT', 'TSLA', 'AMZN', 'LYFT', 'CRM', 'MSFT', 'AAPL', 'FB', 'NVDA', 'NFLX', 'JD', 'VZ', 'PFE', 'GOOGL', 'PYPL', 'BA', 'CSCO', 'MU', 'SQ', 'DIS')
 financial_favorites = ('GS', 'BAC', 'JPM')
 retail_favorites = ('LULU', 'NKE', 'TGT', 'WMT', 'COST')
-others = ('BA')
+others = ('BA', "GM", "GE", "NIO")
 
 def wide_reversals(ticker="SPY") : 
-    data = yf.download(ticker, start="2020-01-01", end="2021-02-07")
-    
+    data = yf.download(ticker, start="2020-01-01", end=datetime.today().strftime('%Y-%m-%d'))   
     open = data['Open']
     high = data['High']
     low = data['Low']
@@ -85,32 +84,38 @@ def wide_reversals(ticker="SPY") :
     upside_gap_two_crows = talib.CDLUPSIDEGAP2CROWS(open, high, low, close)[current_date]
     upside_downside_gap_three_methods = talib.CDLXSIDEGAP3METHODS(open, high, low, close)[current_date]
 
-    print(type(two_crows))
+    patterns = list(vars().keys())[7:]
+    values = list(vars().values())[7:]
+
+    for index in range(0,len(patterns)):
+        if (values[index] != 0):
+            print(patterns[index])
+            print(values[index])
 
 
 wide_reversals()
 
-# print('Market Indices:')
-# for ticker in market_indices : 
-#     print(ticker)
-#     print(wide_reversals(ticker))
+print('MARKET INDICES:')
+for ticker in market_indices : 
+    print(ticker)
+    print(wide_reversals(ticker))
 
-# print('Tech Favorites:')
-# for ticker in tech_favorites : 
-#     print(ticker)
-#     print(wide_reversals(ticker))
+print('TECH FAVORITES:')
+for ticker in tech_favorites : 
+    print(ticker)
+    print(wide_reversals(ticker))
 
-# print('Financial Favorites:')
-# for ticker in financial_favorites : 
-#     print(ticker)
-#     print(wide_reversals(ticker))
+print('FINANCIAL FAVORITES:')
+for ticker in financial_favorites : 
+    print(ticker)
+    print(wide_reversals(ticker))
 
-# print('Retail Favorites:')
-# for ticker in retail_favorites : 
-#     print(ticker)
-#     print(wide_reversals(ticker))
+print('RETAIL FAVORITES:')
+for ticker in retail_favorites : 
+    print(ticker)
+    print(wide_reversals(ticker))
 
-# print('Others:')
-# for ticker in others : 
-#     print(ticker)
-#     print(wide_reversals(ticker))
+print('OTHERS:')
+for ticker in others : 
+    print(ticker)
+    print(wide_reversals(ticker))
