@@ -13,7 +13,9 @@ financial_favorites = ('GS', 'BAC', 'JPM')
 retail_favorites = ('LULU', 'NKE', 'TGT', 'WMT', 'COST')
 others = ('BA', "GM", "GE", "NIO")
 
-def wide_reversals(ticker="SPY") : 
+# The execution of this library should be done at the end of the trading day. For each ticker, if the value is equal to 100 or -100 this signifies that specific has been triggered, and to investigate the chart of the security further
+
+def built_in_scanners(ticker="SPY") : 
     data = yf.download(ticker, start="2020-01-01", end=datetime.today().strftime('%Y-%m-%d'))   
     open = data['Open']
     high = data['High']
@@ -92,30 +94,27 @@ def wide_reversals(ticker="SPY") :
             print(patterns[index])
             print(values[index])
 
-
-wide_reversals()
-
 print('MARKET INDICES:')
 for ticker in market_indices : 
     print(ticker)
-    print(wide_reversals(ticker))
+    print(built_in_scanners(ticker))
 
 print('TECH FAVORITES:')
 for ticker in tech_favorites : 
     print(ticker)
-    print(wide_reversals(ticker))
+    print(built_in_scanners(ticker))
 
 print('FINANCIAL FAVORITES:')
 for ticker in financial_favorites : 
     print(ticker)
-    print(wide_reversals(ticker))
+    print(built_in_scanners(ticker))
 
 print('RETAIL FAVORITES:')
 for ticker in retail_favorites : 
     print(ticker)
-    print(wide_reversals(ticker))
+    print(built_in_scanners(ticker))
 
 print('OTHERS:')
 for ticker in others : 
     print(ticker)
-    print(wide_reversals(ticker))
+    print(built_in_scanners(ticker))
