@@ -8,7 +8,7 @@ This includes:
 4. PRICE CHANGE (**dramatic_price_change.py**)
 6. LONG STOCKS AT MINUS TWO TIMES AVERAGE TRUE RANGE(ATR) (**atr_deviation.py**)
 
-In his book *Introduction to ConnorsRSI*, Larry Connors uses slightly different rules to calculate the ConnorsRSI. He incorporates this indicator in his official options pullback strategy. Files **official_2period_rsi_swing.py** and **larry_connors_pullback.py** implement the indicator and strategy respectively.
+In his book *Introduction to ConnorsRSI*, Larry Connors uses slightly different rules to calculate the ConnorsRSI. He incorporates this indicator in his official options pullback strategy. Files **official_2period_rsi_swing.py** and **pullback.py** implement the indicator and strategy respectively. Meanwhile, the technical trading library TA-Lib holds dozens of superb trading scanners, and **built_in_scanners.py** implements all of them for a number of example tickers. 
 
 Please make sure the following dependencies are installed before running any script(s): 
 
