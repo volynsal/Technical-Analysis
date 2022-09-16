@@ -60,7 +60,7 @@ nibabel==3.2.1
 nipype==1.6.1
 notebook==6.0.3
 numpy==1.18.1
-oauthlib==3.1.1
+oauthlib==3.2.1
 packaging==20.3
 pandas==0.25.3
 pandas-datareader==0.8.1
